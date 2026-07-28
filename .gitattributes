@@ -1,0 +1,3 @@
+<PATH> !text !filter !merge !diff
+source/lehome/lehome/tasks/washroom/config_file/Towel/textures/color_121212.hdr !text !filter !merge !diff
+*.hdr !text !filter !merge !diff

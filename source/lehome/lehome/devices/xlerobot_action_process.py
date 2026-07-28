@@ -110,10 +110,10 @@ def init_xlerobot_action_cfg(action_cfg, device):
         action_cfg.unified_action = mdp.JointPositionActionCfg(
             asset_name="robot",
             joint_names=[
-                "root_x_axis_joint", "root_z_rotation_joint",
-                "Rotation", "Pitch", "Elbow", "Wrist_Pitch", "Wrist_Roll", "Jaw",
-                "Rotation_2", "Pitch_2", "Elbow_2", "Wrist_Pitch_2", "Wrist_Roll_2", "Jaw_2",
-                "head_pan_joint", "head_tilt_joint"
+                "root_x_axis_joint", "root_z_rotation_joint",  # 底盘
+                "Rotation", "Pitch", "Elbow", "Wrist_Pitch", "Wrist_Roll", "Jaw",  # 左臂
+                "Rotation_2", "Pitch_2", "Elbow_2", "Wrist_Pitch_2", "Wrist_Roll_2", "Jaw_2",  # 右臂
+                "head_pan_joint", "head_tilt_joint"  # 头部
             ],
             scale=1.0,
         )

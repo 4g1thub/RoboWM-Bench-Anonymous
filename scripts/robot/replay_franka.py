@@ -237,6 +237,7 @@ def main():
     if not json_root.exists():
         raise ValueError(f"JSON root directory does not exist: {json_root}")
 
+    # 读取 file_indices.txt 文件
     file_indices_path = json_root / "file_indices.txt"
     if not file_indices_path.exists():
         raise ValueError(f"file_indices.txt does not exist in {json_root}.")

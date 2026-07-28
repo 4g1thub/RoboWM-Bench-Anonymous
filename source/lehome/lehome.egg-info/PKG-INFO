@@ -3,6 +3,7 @@ Name: lehome
 Version: 0.1.0
 Summary: Extension Template for Isaac Lab
 Home-page: https://github.com/isaac-sim/IsaacLab.git
+Author: Isaac Lab Project Developers
 Maintainer: Isaac Lab Project Developers
 License: Apache-2.0
 Keywords: extension,template,isaaclab

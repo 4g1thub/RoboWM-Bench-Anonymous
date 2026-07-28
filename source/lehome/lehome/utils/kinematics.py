@@ -16,6 +16,7 @@ import numpy as np
 
 
 class RobotKinematics:
+    """基于 Pinocchio 的前向/逆向运动学工具（用于 lehome 项目）。"""
 
     def __init__(
         self,
@@ -23,6 +24,14 @@ class RobotKinematics:
         target_frame_name: str = "gripper_frame_link",
         joint_names: list[str] | None = None,
     ):
+        """
+        初始化 Pinocchio 运动学求解器。
+
+        Args:
+            urdf_path: 机器人 URDF 文件路径
+            target_frame_name: 末端执行器 frame 名称
+            joint_names: 参与求解的关节名列表；None 则使用模型中的所有可动关节
+        """
         self.urdf_path = urdf_path
         self.target_frame_name = target_frame_name
         self.joint_names = joint_names

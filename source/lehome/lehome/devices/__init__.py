@@ -26,8 +26,8 @@ __all__ = [
     "Se3DroidKeyboard",
     "BiKeyboard",
     "XlerobotKeyboard",
-    "XlerobotHybridController",
-    # "XboxController",
+    "XlerobotHybridController",  # 添加这一行
+    # "XboxController",  # 注释掉，因为可能不存在
 ]
 
 # Only export LeRobot devices if they imported successfully.

@@ -60,7 +60,7 @@ def get_cloth_object_particle_position(particle_object, index_list):
     return positions
 
 
-@step_interval(interval=10)
+@step_interval(interval=3)
 def success_checker_pick(
     rigid_object_a, ori_z,env_id: int = 0
 ):

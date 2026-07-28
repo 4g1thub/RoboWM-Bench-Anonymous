@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# ruff: noqa: N802
+# This noqa is for the Protocols classes: PortHandler, PacketHandler GroupSyncRead/Write
+# TODO(aliberts): Add block noqa when feature below is available
+# https://github.com/astral-sh/ruff/issues/3711
+
 import abc
 import logging
 from contextlib import contextmanager
@@ -1124,6 +1129,20 @@ class MotorsBus(abc.ABC):
         self.sync_reader.data_length = length
         for id_ in motor_ids:
             self.sync_reader.addParam(id_)
+
+    # TODO(aliberts, pkooij): Implementing something like this could get even much faster read times if need be.
+    # Would have to handle the logic of checking if a packet has been sent previously though but doable.
+    # This could be at the cost of increase latency between the moment the data is produced by the motors and
+    # the moment it is used by a policy.
+    # def _async_read(self, motor_ids: list[int], address: int, length: int):
+    #     if self.sync_reader.start_address != address or self.sync_reader.data_length != length or ...:
+    #         self._setup_sync_reader(motor_ids, address, length)
+    #     else:
+    #         self.sync_reader.rxPacket()
+    #         self.sync_reader.txPacket()
+
+    #     for id_ in motor_ids:
+    #         value = self.sync_reader.getData(id_, address, length)
 
     def sync_write(
         self,

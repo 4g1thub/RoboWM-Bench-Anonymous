@@ -323,6 +323,7 @@ def main():
                 max_diff = max(max_diff, pos_err_mm)
                 min_diff = min(min_diff, pos_err_mm)
 
+                # 3. 计算 P-Control Action (Pose Delta)
                 ik_cmd_tensor = calculate_action(
                     target_pos_w,
                     target_rot_w,

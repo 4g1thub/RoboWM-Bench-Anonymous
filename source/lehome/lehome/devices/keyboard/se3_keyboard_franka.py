@@ -152,7 +152,7 @@ class Se3FrankaKeyboard(Device):
                 key_name = event.input.name
         except AttributeError:
             return True
-        # print(f"Key event detected: {key_name}, type: {event.type}")
+        # print(f"Key event detected: {key_name}, type: {event.type}")  # 添加调试信息
 
         if event.type == carb.input.KeyboardEventType.KEY_PRESS:
             if key_name in self._INPUT_KEY_MAPPING.keys():

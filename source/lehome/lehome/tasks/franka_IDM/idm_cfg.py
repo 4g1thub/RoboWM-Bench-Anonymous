@@ -1,6 +1,7 @@
 from __future__ import annotations
 import torch
 from dataclasses import MISSING
+from pathlib import Path
 import torch
 from collections.abc import Sequence
 import isaaclab.sim as sim_utils
@@ -18,7 +19,10 @@ from isaaclab.sensors import TiledCameraCfg
 
 from lehome.assets.robots.franka import FRANKA_CFG
 from lehome.assets.robots.droid import FRANKA_ROBOTIQ_GRIPPER_CFG
-import os
+
+
+_PROJECT_ROOT = Path(__file__).resolve().parents[5]
+_BENCHMARK_OBJECT_ROOT = _PROJECT_ROOT / "Assets" / "benchmark" / "object"
 
 
 @configclass
@@ -57,6 +61,14 @@ class IDMEnvCfg(DirectRLEnvCfg):
             # rot=(1, 0.0, 0, 0),#wxyz
         ),  
     )
+    # from isaaclab.sensors import ContactSensor,ContactSensorCfg
+    # contact_sensor_cfg = ContactSensorCfg(
+    #         prim_path="/World/Robot/Robot/.*",  # Match all robot parts
+    #         filter_prim_paths_expr=["/World/Object/*"], 
+    #         update_period=0.0,  # Sensor update period
+    #         history_length=1, 
+    #         debug_vis=False
+    #     )
     top_camera: TiledCameraCfg = TiledCameraCfg(
         prim_path="/World/top_camera",
         offset=TiledCameraCfg.OffsetCfg(
@@ -95,6 +107,17 @@ class IDMEnvCfg(DirectRLEnvCfg):
         width=640,
         height=480,
     )
+
+    # banana: RigidObjectCfg = RigidObjectCfg(
+    #     prim_path="/World/Object/banana",
+    #     spawn=sim_utils.UsdFileCfg( 
+    #         usd_path=str(_BENCHMARK_OBJECT_ROOT / "banana" / "banana.usd")
+    #     ),
+    #     init_state=RigidObjectCfg.InitialStateCfg(
+    #         pos=(11, 11, 11),
+    #         rot=(1, 0.0, 0.0, 0), 
+    #     ),
+    # )
 
     # scene
     scene: InteractiveSceneCfg = InteractiveSceneCfg(

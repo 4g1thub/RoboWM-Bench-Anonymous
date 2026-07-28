@@ -2,11 +2,6 @@
   <h1><b>RoboWM-Bench</b></h1>
   <hr/>
   <h2><i>RoboWM-Bench: A Benchmark for Evaluating<br/>World Models in Robotic Manipulation</i></h2>
-  <p>
-    <a href="img/teaser.pdf">
-      <img src="img/teaser.png" alt="RoboWM-Bench teaser" width="1000" style="max-width: 100%; height: auto;" />
-    </a>
-  </p>
 </div>
 
 RoboWM-Bench provides Isaac Lab simulation tasks (with a LeHome-style layout) and tooling to:
@@ -16,18 +11,13 @@ RoboWM-Bench provides Isaac Lab simulation tasks (with a LeHome-style layout) an
 - evaluate Franka and Human tasks in simulation and optionally record cameras / per-step scores
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Project Layout](#project-layout)
 - [Replay: Generate IDM Training Data](#replay-generate-idm-training-data)
 - [World Model Inputs](#world-model-inputs)
 - [IDM](#idm)
 - [Phantom Hand Motion Extraction](#phantom-hand-motion-extraction)
-  - [For Single Arm Task](#for-single-arm-task)
-  - [For Dual Arm Task](#for-dual-arm-task)
 - [Evaluation](#evaluation)
-  - [Robot](#robot)
-  - [Human](#human)
 
 ## Installation
 
@@ -42,33 +32,9 @@ conda activate RWMBench
 pip install torch==2.7.0 torchvision==0.22.0 --index-url https://download.pytorch.org/whl/cu128
 
 # Install RoboWM-Bench
-git clone this repository
-cd RoboWM-Bench
+git clone https://github.com/4g1thub/RoboWM-Bench-Anonymous.git
+cd RoboWM-Bench-Anonymous
 python -m pip install -e source/lehome
-
-# Clone third party
-cd third_party/phantom
-
-git clone https://github.com/MarionLepert/phantom-E2FGVI.git submodules/phantom-E2FGVI
-cd submodules/phantom-E2FGVI
-git checkout 5b45ffe
-
-git clone https://github.com/facebookresearch/sam2.git submodules/sam2
-cd submodules/sam2
-git checkout 2b90b9f
-
-git clone https://github.com/MarionLepert/phantom-robosuite.git submodules/phantom-robosuite
-cd submodules/phantom-robosuite
-git checkout a8a93e0
-
-git clone https://github.com/MarionLepert/phantom-robomimic.git submodules/phantom-robomimic
-cd submodules/phantom-robomimic
-git checkout 047045d
-
-git clone https://github.com/MarionLepert/phantom-hamer.git submodules/phantom-hamer
-cd submodules/phantom-hamer
-git checkout 7f4a703
-cd ../..
 
 # Install lerobot==0.4.3
 pip install "lerobot==0.4.3"
@@ -79,6 +45,8 @@ pip install --upgrade pip
 pip install "isaacsim[all,extscache]==5.1.0" --extra-index-url https://pypi.nvidia.com
 
 # Install IsaacLab (pinned for IsaacSim 5.1)
+# Use the bundled IsaacLab_5_1 source included in this repository for this environment; do not replace it with a separate IsaacLab installation, as RoboWM-Bench may rely on
+# interfaces from this bundled copy.
 sudo apt install cmake build-essential
 cd IsaacLab_5_1
 git checkout v2.3.0
@@ -127,11 +95,12 @@ python scripts/eval/replay_franka.py \
 
 ## IDM
 
+After obtaining the world model outputs, please run the tools/resize.py to process the video resolution to 640×480, and then use IDM to process these videos.
+
 Please refer to NVIDIA DreamGen (GR00T-dreams) for the IDM section: `https://github.com/nvidia/GR00T-dreams`.
 
 - Replace `data_config_idm.py` with `IDM/data_config_idm.py`.
 - `IDM/discard_trash` is a reference input dataset. Make sure your dataset `meta` matches the reference, especially **`modality`** and **`stats`**.
-- IDM weights (open-sourced): `https://https://huggingface.co/RoboWM-Bench/robowmbench-idm-copy`.
 
 IDM inference command:
 

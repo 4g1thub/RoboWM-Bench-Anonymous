@@ -77,8 +77,8 @@ def main():
     p.add_argument(
         "--path",
         nargs="?",
-        default="Datasets/record/259/pointclouds/episode_005/frame_1.npz",
-        help="path to .npz file or directory",
+        default=None,
+        help="path to a .npz file or directory; defaults to ./Datasets/record",
     )
     args = p.parse_args()
     if args.path is None:

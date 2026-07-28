@@ -129,7 +129,7 @@ def create_world_state(env, robot=None):
             ee_link = candidate
             break
     if ee_link is None:
-        ee_link = robot.data.body_names[-1]
+        ee_link = robot.data.body_names[-1]  # fallback: 最后一个 body
     ee_idx = robot.data.body_names.index(ee_link)
     ee_state = robot.data.body_state_w[0, ee_idx]
     ee_pose = ee_state[:7]

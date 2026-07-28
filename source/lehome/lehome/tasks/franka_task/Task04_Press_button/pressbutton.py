@@ -16,7 +16,7 @@ from isaaclab.envs import DirectRLEnv
 from isaaclab.sensors import ContactSensor, TiledCamera
 from pxr import Sdf, Usd, UsdGeom, UsdShade
 
-from .pressbuttom_cfg import PressButtonEnvCfg
+from .pressbutton_cfg import PressButtonEnvCfg
 from lehome.devices.action_process import preprocess_device_action
 
 def _resolve_assets_root() -> str:

@@ -394,7 +394,7 @@ class TablewareEnv(DirectRLEnv):
 
         lift_height_threshold = 0.06
         place_distance_threshold = 0.05
-        contact_distance_threshold = 0.1
+        contact_distance_threshold = 0.1  # Spatula 和 Pan 质心距离阈值，判断接触
 
         # 1: Grasp spatula
         if self.part == 0:

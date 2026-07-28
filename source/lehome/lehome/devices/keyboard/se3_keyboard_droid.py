@@ -105,8 +105,8 @@ class Se3DroidKeyboard(Device):
                 self.started = False
                 self._reset_state = True
                 self._additional_callbacks["N"]()
-            elif key.char.upper() in self._additional_callbacks:
-                print(f"Key {key.char.upper()} released, triggering callback.")
+            elif key.char.upper() in self._additional_callbacks:  # 检查是否存在回调
+                print(f"Key {key.char.upper()} released, triggering callback.")  # 调试信息
                 self._additional_callbacks[key.char.upper()]()
         except AttributeError:
             # Handle special keys (like ESC)
@@ -148,7 +148,7 @@ class Se3DroidKeyboard(Device):
                 key_name = event.input.name
         except AttributeError:
             return True
-        print(f"Key event detected: {key_name}, type: {event.type}")
+        print(f"Key event detected: {key_name}, type: {event.type}")  # 添加调试信息
 
         if event.type == carb.input.KeyboardEventType.KEY_PRESS:
             if key_name in self._INPUT_KEY_MAPPING.keys():

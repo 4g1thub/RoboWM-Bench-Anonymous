@@ -84,6 +84,7 @@ def setup_default_lighting(task_name: str | None = None):
             path = f"{base_path}/{name}"
             prim = stage.GetPrimAtPath(path)
             
+            # 创建或获取光源
             if not prim.IsValid():
                 light = UsdLux.DistantLight.Define(stage, path)
                 status = "created"
@@ -91,17 +92,21 @@ def setup_default_lighting(task_name: str | None = None):
                 light = UsdLux.DistantLight(prim)
                 status = "updated"
             
+            # 设置属性（无论是新创建还是已存在的光源）
             light.GetIntensityAttr().Set(float(intensity))
             light.GetColorAttr().Set(Gf.Vec3f(1.0, 1.0, 1.0))
             
+            # 设置方向
             xform = UsdGeom.Xformable(light.GetPrim())
             xform.ClearXformOpOrder()
             xform.AddRotateXYZOp().Set(Gf.Vec3f(*rot))
             
             created_lights.append(f"{name}({status}, I={intensity})")
         
+        # 打印详细信息
         print(f"[Rendering] ✓ Lights setup: {', '.join(created_lights)}")
         
+        # 所有光源设置完成后才返回
         return True
     except Exception as e:
         print(f"[Rendering][Error] Failed to setup default lighting: {e}")
@@ -143,6 +148,7 @@ def setup_default_lighting_drawer(task_name: str | None = None):
             path = f"{base_path}/{name}"
             prim = stage.GetPrimAtPath(path)
             
+            # 创建或获取光源
             if not prim.IsValid():
                 light = UsdLux.DistantLight.Define(stage, path)
                 status = "created"
@@ -150,17 +156,21 @@ def setup_default_lighting_drawer(task_name: str | None = None):
                 light = UsdLux.DistantLight(prim)
                 status = "updated"
             
+            # 设置属性（无论是新创建还是已存在的光源）
             light.GetIntensityAttr().Set(float(intensity))
             light.GetColorAttr().Set(Gf.Vec3f(1.0, 1.0, 1.0))
             
+            # 设置方向
             xform = UsdGeom.Xformable(light.GetPrim())
             xform.ClearXformOpOrder()
             xform.AddRotateXYZOp().Set(Gf.Vec3f(*rot))
             
             created_lights.append(f"{name}({status}, I={intensity})")
         
+        # 打印详细信息
         print(f"[Rendering] ✓ Lights setup: {', '.join(created_lights)}")
         
+        # 所有光源设置完成后才返回
         return True
     except Exception as e:
         print(f"[Rendering][Error] Failed to setup default lighting: {e}")
