@@ -1,1 +1,3 @@
+1. New Prompt 1 : This prompt is tested on every input.
+
 The robotic arm closes its gripper and then presses the button on the table surface. Throughout the entire sequence, the gripper undergoes no structural deformation, only the opening angle of its jaws changes; the rotational movements of the robotic arm joints strictly adhere to its inherent mechanical structure; and the camera perspective remains completely unchanged.
